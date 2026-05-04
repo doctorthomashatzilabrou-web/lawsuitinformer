@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worldborne Medical - Audit Suite Proposal for LawsuitInformer.com</title>
+    
+    <!-- Chosen Palette: Professional Medical-Legal (Navy Blue, Slate Gray, Crisp White, Amber/Gold Accents) -->
+    <!-- Application Structure Plan: The SPA is structured as an interactive B2B proposal dashboard. It uses a side-navigation layout (sidebar for audit selection, main pane for details) to allow LawsuitInformer stakeholders to easily explore the expanded suite of medical-legal audits. This structure prevents information overload while ensuring all specific SOP details (scope, deliverables, pricing) are accessible. A bottom section includes a data visualization to immediately communicate the ROI and risk-mitigation value of these audits in the YMYL space. -->
+    <!-- Visualization & Content Choices: 
+         1. Interactive Sidebar Navigation -> Goal: Organize -> Method: HTML/Tailwind list with JS active states -> Justification: Allows quick toggling between the 7 different audit types without page reloads.
+         2. Dynamic Content Pane -> Goal: Inform -> Method: Vanilla JS innerHTML updates -> Justification: Keeps the UI clean and focused on one audit's details at a time (Scope, Deliverables, Pricing).
+         3. Radar Chart (Value Proposition) -> Goal: Compare -> Method: Chart.js Canvas -> Interaction: Hover tooltips -> Justification: Visually contrasts the risk/performance profile of a web property before and after Worldborne's interventions across key medical-legal metrics (E-E-A-T, Conversion, Defensibility).
+         4. NO SVG/Mermaid -> Confirmed. All structural elements use Tailwind CSS styling and standard web fonts/Unicode. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light slate background */
+            color: #0f172a; /* Slate 900 text */
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Merriweather', serif;
+        }
+        
+        /* Required Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        
+        .audit-btn.active {
+            background-color: #1e3a8a; /* Blue 900 */
+            color: white;
+            border-left: 4px solid #f59e0b; /* Amber 500 */
+        }
+        .audit-btn {
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .audit-btn:hover:not(.active) {
+            background-color: #e2e8f0; /* Slate 200 */
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-6 shadow-md border-b-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">WORLDBORNE MEDICAL</h1>
+                <p class="text-blue-200 text-sm mt-1 uppercase tracking-wider font-semibold">Standard Operating Procedures & Audit Suite</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <span class="inline-block bg-blue-800 text-amber-400 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wide border border-blue-700">
+                    Prepared for: LawsuitInformer.com
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Introduction Section -->
+        <section class="mb-10 bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">Medical Authority & YMYL Defensibility Strategy</h2>
+            <p class="text-slate-600 leading-relaxed">
+                Welcome to the Worldborne Medical Audit Suite. This dashboard outlines the specialized clinical, UX, and strategic reviews we offer to high-stakes medical-legal publishers like <strong>LawsuitInformer.com</strong>. In the highly scrutinized YMYL (Your Money or Your Life) space, a single clinical inaccuracy or point of friction can trigger Google "Medic" penalties, expose you to liability, or drop $50,000+ settlement leads. Select an audit from the menu below to explore how physician-led review fortifies your content, intake surfaces, and overall digital architecture.
+            </p>
+        </section>
+
+        <!-- Interactive Audit Explorer -->
+        <section class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Navigation -->
+            <div class="lg:w-1/3 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-slate-50 p-4 border-b border-slate-200">
+                    <h3 class="font-bold text-slate-700 uppercase tracking-wide text-sm">Available Audit Protocols</h3>
+                </div>
+                <nav id="audit-nav" class="flex flex-col w-full h-full">
+                    <!-- Buttons populated by JS -->
+                </nav>
+            </div>
+
+            <!-- Dynamic Content Pane -->
+            <div class="lg:w-2/3 bg-white rounded-lg shadow-md border border-slate-200 flex flex-col relative overflow-hidden">
+                <!-- Top Accent Line -->
+                <div class="h-1 w-full bg-blue-800 absolute top-0 left-0"></div>
+                
+                <div class="p-8" id="audit-content">
+                    <!-- Default State Content -->
+                    <div class="text-center py-20 text-slate-400">
+                        <div class="text-6xl mb-4">&#9878;</div> <!-- Scales of Justice / Medical hybrid concept -->
+                        <h3 class="text-2xl font-bold text-slate-600 mb-2">Select an Audit Protocol</h3>
+                        <p>Click an item in the sidebar to view scope, deliverables, and engagement details.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition / Data Visualization -->
+        <section class="mt-12 bg-white p-6 md:p-8 rounded-lg shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">The Worldborne Impact: Risk Mitigation & Lead Optimization</h2>
+            <p class="text-slate-600 mb-8 max-w-3xl">
+                This radar chart visualizes the anticipated shift in web property performance and safety profiles when transitioning from standard legal copywriting to physician-audited, Daubert-grade content and specialized clinical UX. The goal is maximum defensibility coupled with high conversion.
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <div class="chart-container">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 space-y-4">
+                    <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                        <h4 class="font-bold text-blue-900 flex items-center mb-1"><span class="text-amber-500 mr-2">&#9650;</span> Clinical Accuracy</h4>
+                        <p class="text-sm text-slate-600">Eliminates causation language that exceeds supporting epidemiology.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                        <h4 class="font-bold text-blue-900 flex items-center mb-1"><span class="text-amber-500 mr-2">&#9650;</span> UX Conversion</h4>
+                        <p class="text-sm text-slate-600">Reduces drop-offs in intake forms through physician-guided behavioral logic.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                        <h4 class="font-bold text-blue-900 flex items-center mb-1"><span class="text-amber-500 mr-2">&#9650;</span> Google E-E-A-T</h4>
+                        <p class="text-sm text-slate-600">Satisfies search quality raters with verified "Medically Reviewed By" seals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm mt-auto">
+        <p>&copy; 2026 Worldborne Medical, LLC. Confidential & Proprietary.</p>
+        <p class="mt-2 text-slate-500">Document ID: WB-PROP-042 | Effective: May 2026</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Data Storage: Audit Details ---
+        const audits = [
+            {
+                id: "integrity",
+                title: "Medical Article Integrity & SEO Audit",
+                sop: "SOP-WB-002",
+                tier: "Medical Article Integrity & SEO",
+                time: "~4 hours",
+                price: "$800 fixed-scope",
+                reviewer: "MD Senior Medical Editor",
+                purpose: "MD Senior Medical Editor review for YMYL content under Daubert-grade scrutiny. Engineered for high-stakes litigation publishing where inaccuracies trigger Google 'Medic' penalties or create exposure to legal challenges.",
+                scope: [
+                    "Mass tort condition pages (e.g., AFFF / PFAS, Roundup, talc, Paraquat).",
+                    "Symptom and diagnosis explainers tied to active litigation.",
+                    "Review of disease-exposure linkage against current epidemiology."
+                ],
+                deliverables: [
+                    "Annotated manuscript with tracked changes.",
+                    "Clinical Rationale summary (1-2 sentences per material change).",
+                    "Clinical Integrity Seal (naming the MD reviewer & date).",
+                    "Suggested 'Medically Reviewed by' CMS byline block."
+                ]
+            },
+            {
+                id: "clinical-ux",
+                title: "Specialized Clinical UX Audit",
+                sop: "SOP-WB-007",
+                tier: "Specialized Clinical UX",
+                time: "~3 hours",
+                price: "$750 fixed-scope",
+                reviewer: "Clinical UX Strategist (MD-validated)",
+                purpose: "Physician-led conversion audit for medical-legal lead intake. Applies a clinical lens to UX review, combining standard friction analysis with medical-legal logic to prevent dropping high-value claim leads.",
+                scope: [
+                    "Single-page or multi-step intake forms collecting health info.",
+                    "Tort-related landing pages and symptom-triage funnels.",
+                    "Analysis of field logic, medical terminology friction, and mobile rendering."
+                ],
+                deliverables: [
+                    "PDF report (6–10 pages) with annotated screen captures.",
+                    "Competitor benchmarking matrix.",
+                    "Prioritized Action Plan (P0 / P1 / P2 tagging) with clinical rationale.",
+                    "Named clinical reviewer block (Thomas A. Hatzilabrou, MD)."
+                ]
+            },
+            {
+                id: "mass-tort",
+                title: "Mass Tort Claims Content Audit",
+                sop: "SOP-WB-010",
+                tier: "Litigation Specific Content",
+                time: "~5 hours",
+                price: "$950 fixed-scope",
+                reviewer: "MD / JD Content Specialist",
+                purpose: "A deep dive specifically tailored for Multidistrict Litigation (MDL) criteria. Ensures that marketing language does not inadvertently promise medical causation that exceeds the specific evidentiary thresholds required by the courts for that tort.",
+                scope: [
+                    "Entire silo of content related to a specific active tort (e.g., Camp Lejeune).",
+                    "Review of qualification criteria checklists on client sites.",
+                    "Alignment of marketing claims with FDA/EPA findings and court-approved science."
+                ],
+                deliverables: [
+                    "Risk-flagged content inventory spreadsheet.",
+                    "Alternative phrasing guide for legally compliant medical claims.",
+                    "MDL specific 'Greenlight/Redlight' messaging matrix."
+                ]
+            },
+            {
+                id: "webflow-sitemap",
+                title: "Sitemap & Webflow Architecture Audit",
+                sop: "SOP-WB-012",
+                tier: "Technical & Structural Medical SEO",
+                time: "~6 hours",
+                price: "$1,200 fixed-scope",
+                reviewer: "Technical SEO & Information Architect",
+                purpose: "Reviews the structural hierarchy of the LawsuitInformer Webflow build. Ensures that mass tort campaigns do not cannibalize each other, that medical information is siloed correctly for topical authority, and technical UX passes Google's Core Web Vitals for YMYL.",
+                scope: [
+                    "Full URL structure and internal linking architecture.",
+                    "Webflow CMS collection structure for Authors, Medically Reviewed tags, and Conditions.",
+                    "Orphaned medical pages and content cannibalization."
+                ],
+                deliverables: [
+                    "Visual map of optimized content silos.",
+                    "Webflow CMS schema recommendations for E-E-A-T automation.",
+                    "Technical remediation punch-list for developers."
+                ]
+            },
+            {
+                id: "lawsuit-update",
+                title: "Lawsuit Update & Epidemiology Audit",
+                sop: "SOP-WB-015",
+                tier: "Rapid-Response Content Refresh",
+                time: "~2 hours",
+                price: "$450 per condition",
+                reviewer: "Epidemiology Research Analyst",
+                purpose: "A rapid-response review of ongoing litigations. Ensures that the medical claims and statistics on LawsuitInformer reflect the absolute latest FDA, EPA, or clinical trial data as litigations evolve over months or years.",
+                scope: [
+                    "Specific 'Lawsuit Update' news feeds and blogs.",
+                    "Checking cited study dates against newest available research.",
+                    "Verifying FDA recall statuses or regulatory shifts."
+                ],
+                deliverables: [
+                    "Direct copyedits to update statistics and regulatory statuses.",
+                    "Citation library update (adding newest PubMed IDs).",
+                    "Time-stamped 'Data Verified' badge for CMS."
+                ]
+            },
+            {
+                id: "competitor",
+                title: "Competitor Landscape & Benchmarking Audit",
+                sop: "SOP-WB-018",
+                tier: "Strategic Medical SEO",
+                time: "~8 hours",
+                price: "$1,800 fixed-scope",
+                reviewer: "Lead Medical Strategist",
+                purpose: "Benchmarks LawsuitInformer against top 3 ranking competitors for specific high-value SERPs (e.g., 'Roundup Lymphoma Lawsuit'). Analyzes competitor content depth, clinical UX, and E-E-A-T signals to find ranking gaps.",
+                scope: [
+                    "Top 3 competitor domains per primary keyword.",
+                    "Analysis of competitor medical review boards and author credentials.",
+                    "Comparison of intake form friction and conversion triggers."
+                ],
+                deliverables: [
+                    "Comprehensive SWOT analysis PDF.",
+                    "Feature-gap matrix (what they have that we don't).",
+                    "Quarterly content roadmap to overtake competitor topical authority."
+                ]
+            },
+            {
+                id: "eeat-profile",
+                title: "Author E-E-A-T & Credibility Audit",
+                sop: "SOP-WB-021",
+                tier: "Entity & Trust Optimization",
+                time: "~2.5 hours",
+                price: "$600 fixed-scope",
+                reviewer: "YMYL Compliance Editor",
+                purpose: "Reviewing and optimizing the 'About the Authors' and 'Medical Review Board' pages. Ensures the presentation of credentials meets Google's Quality Rater Guidelines for Experience, Expertise, Authoritativeness, and Trustworthiness.",
+                scope: [
+                    "Author bios, schema markup, and outbound credential linking.",
+                    "Transparency of editorial policies and medical review policies.",
+                    "Digital footprint analysis of listed reviewers."
+                ],
+                deliverables: [
+                    "Rewritten author bios maximizing trust signals.",
+                    "Recommended 'Editorial Policy' page template.",
+                    "Instructions for implementing standard 'Person' and 'MedicalOrganization' JSON-LD schema."
+                ]
+            }
+        ];
+
+        // --- Core Interaction Handling ---
+        
+        // 1. Render Navigation
+        function renderNavigation() {
+            const navContainer = document.getElementById('audit-nav');
+            audits.forEach((audit, index) => {
+                const btn = document.createElement('button');
+                btn.className = `audit-btn w-full text-left px-5 py-4 border-b border-slate-100 font-semibold text-slate-700 hover:text-blue-900 focus:outline-none flex justify-between items-center`;
+                btn.dataset.id = audit.id;
+                btn.innerHTML = `
+                    <span>${audit.title}</span>
+                    <span class="text-xs text-slate-400 font-normal hidden lg:inline-block ml-2">&rarr;</span>
+                `;
+                btn.addEventListener('click', () => loadAudit(audit.id, btn));
+                navContainer.appendChild(btn);
+                
+                // Load first audit by default
+                if(index === 0) {
+                    loadAudit(audit.id, btn);
+                }
+            });
+        }
+
+        // 2. Load Content into Main Pane
+        function loadAudit(id, clickedBtn) {
+            // Update Active State
+            document.querySelectorAll('.audit-btn').forEach(btn => btn.classList.remove('active'));
+            if(clickedBtn) clickedBtn.classList.add('active');
+
+            // Find Data
+            const data = audits.find(a => a.id === id);
+            if(!data) return;
+
+            // Generate HTML for Scope & Deliverables
+            const scopeList = data.scope.map(item => `<li class="flex items-start mb-2"><span class="text-blue-600 mr-2 mt-1">&#10003;</span> <span>${item}</span></li>`).join('');
+            const delivList = data.deliverables.map(item => `<li class="flex items-start mb-2"><span class="text-amber-500 mr-2 mt-1">&#10146;</span> <span>${item}</span></li>`).join('');
+
+            // Render Content
+            const contentPane = document.getElementById('audit-content');
+            contentPane.innerHTML = `
+                <div class="flex justify-between items-start mb-6 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-amber-500 uppercase tracking-wider block mb-1">${data.sop} | ${data.tier}</span>
+                        <h2 class="text-3xl font-bold text-blue-900 leading-tight">${data.title}</h2>
+                    </div>
+                </div>
+                
+                <p class="text-slate-700 text-lg mb-8 leading-relaxed">${data.purpose}</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-3 flex items-center border-b pb-2"><span class="text-xl mr-2">&#128269;</span> Scope of Review</h4>
+                        <ul class="text-slate-600 text-sm">
+                            ${scopeList}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-3 flex items-center border-b pb-2"><span class="text-xl mr-2">&#128194;</span> Key Deliverables</h4>
+                        <ul class="text-slate-600 text-sm">
+                            ${delivList}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-md border border-slate-200 flex flex-col sm:flex-row justify-between items-center text-sm">
+                    <div class="mb-2 sm:mb-0">
+                        <span class="block text-slate-500 uppercase tracking-wide text-xs font-bold">Reviewer Role</span>
+                        <span class="font-semibold text-slate-800">${data.reviewer}</span>
+                    </div>
+                    <div class="mb-2 sm:mb-0">
+                        <span class="block text-slate-500 uppercase tracking-wide text-xs font-bold">Est. Timeline</span>
+                        <span class="font-semibold text-slate-800">${data.time}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-slate-500 uppercase tracking-wide text-xs font-bold">Standard Engagement</span>
+                        <span class="font-bold text-blue-900 text-base">${data.price}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Add a subtle fade-in animation
+            contentPane.style.opacity = 0;
+            setTimeout(() => {
+                contentPane.style.transition = 'opacity 0.3s ease-in';
+                contentPane.style.opacity = 1;
+            }, 50);
+        }
+
+        // 3. Initialize Chart.js
+        function initChart() {
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Clinical Accuracy', 
+                        'UX Conversion Rate', 
+                        'Legal Defensibility', 
+                        'YMYL SEO Ranking', 
+                        'User Trust (E-E-A-T)', 
+                        'Speed to Market'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Standard Copywriting (Before)',
+                            data: [40, 60, 30, 50, 40, 90],
+                            fill: true,
+                            backgroundColor: 'rgba(148, 163, 184, 0.2)', // Slate 400
+                            borderColor: 'rgba(148, 163, 184, 1)',
+                            pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(148, 163, 184, 1)'
+                        },
+                        {
+                            label: 'Post-Worldborne Audit',
+                            data: [95, 85, 90, 85, 95, 70],
+                            fill: true,
+                            backgroundColor: 'rgba(30, 58, 138, 0.2)', // Blue 900
+                            borderColor: 'rgba(30, 58, 138, 1)',
+                            pointBackgroundColor: 'rgba(245, 158, 11, 1)', // Amber 500
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(245, 158, 11, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // CRITICAL for chart-container to manage height
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { family: "'Inter', sans-serif", size: 14 },
+                            bodyFont: { family: "'Inter', sans-serif", size: 13 },
+                            padding: 12,
+                            cornerRadius: 4
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(226, 232, 240, 1)' // Slate 200
+                            },
+                            grid: {
+                                color: 'rgba(226, 232, 240, 1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11,
+                                    weight: '600'
+                                },
+                                color: '#475569' // Slate 600
+                            },
+                            ticks: {
+                                display: false, // Hide numeric ticks for cleaner look
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNavigation();
+            initChart();
+        });
+    </script>
+</body>
+</html>
