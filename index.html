@@ -85,6 +85,33 @@
             </p>
         </section>
 
+        <!-- Featured Premium Engagement -->
+        <section class="mb-10 rounded-lg shadow-lg overflow-hidden border border-blue-800 bg-blue-900 text-white">
+            <div class="md:flex">
+                <div class="p-8 md:w-2/3">
+                    <span class="inline-block bg-amber-500 text-blue-950 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wide mb-4">Featured Engagement</span>
+                    <h2 class="text-3xl font-bold mb-3 leading-tight">Physician-Authored Medical Whitepaper Series</h2>
+                    <p class="text-blue-100 leading-relaxed mb-6">
+                        A flagship scientific-communications engagement for pharmaceutical and device sponsors. Three MD-authored whitepapers per product &mdash; clinical narrative, mechanism-of-action positioning, and evidence framing grounded in PubMed and clinical-trial data. Built as a repeatable template so the format <strong>scales and duplicates</strong> across additional drugs and indications.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#intake" class="bg-amber-500 hover:bg-amber-400 text-blue-950 font-bold px-6 py-3 rounded-md transition-colors">Request a Proposal &rarr;</a>
+                        <button onclick="document.querySelector('[data-id=whitepaper]').click(); document.getElementById('audit-content').scrollIntoView({behavior:'smooth',block:'center'});" class="border border-blue-400 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-md transition-colors">View Scope &amp; Deliverables</button>
+                    </div>
+                </div>
+                <div class="bg-blue-950 p-8 md:w-1/3 flex flex-col justify-center border-t md:border-t-0 md:border-l border-blue-800">
+                    <span class="text-blue-300 uppercase tracking-wide text-xs font-bold mb-1">Engagement Value</span>
+                    <span class="text-4xl font-bold text-amber-400 mb-1">$9,000</span>
+                    <span class="text-blue-200 text-sm mb-4">for a 3-whitepaper series</span>
+                    <ul class="text-sm text-blue-100 space-y-2">
+                        <li class="flex items-start"><span class="text-amber-400 mr-2">&#10003;</span> 50% deposit to commence</li>
+                        <li class="flex items-start"><span class="text-amber-400 mr-2">&#10003;</span> Balance on final delivery</li>
+                        <li class="flex items-start"><span class="text-amber-400 mr-2">&#10003;</span> Scope-expansion &amp; duplication ready</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Interactive Audit Explorer -->
         <section class="flex flex-col lg:flex-row gap-8">
             
@@ -144,6 +171,64 @@
             </div>
         </section>
 
+        <!-- Intake / Proposal Request -->
+        <section id="intake" class="mt-12 bg-white rounded-lg shadow-md border border-slate-200 overflow-hidden">
+            <div class="md:flex">
+                <div class="bg-slate-900 text-white p-8 md:w-2/5 flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold mb-3">Request a Proposal</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Tell us about your product, content, or litigation portfolio. You'll receive a scoped engagement letter &mdash; typically within two business days &mdash; from a physician-led team.
+                    </p>
+                    <div class="text-sm text-slate-400 space-y-2">
+                        <p><span class="text-amber-400 font-semibold">Direct:</span> doctor.thomas.hatzilabrou@gmail.com</p>
+                        <p class="text-slate-500">Worldborne Medical, LLC &middot; Confidential</p>
+                    </div>
+                </div>
+                <div class="p-8 md:w-3/5">
+                    <form id="intake-form" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Name</label>
+                                <input type="text" name="name" required class="w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800" placeholder="Jane Doe">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Company</label>
+                                <input type="text" name="company" class="w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800" placeholder="MediVant / Law Firm / Publisher">
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Email</label>
+                                <input type="email" name="email" required class="w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800" placeholder="you@company.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Service of Interest</label>
+                                <select name="service" class="w-full border border-slate-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800">
+                                    <option>Medical Whitepaper Series ($9,000)</option>
+                                    <option>Medical Article Integrity &amp; SEO Audit</option>
+                                    <option>Specialized Clinical UX Audit</option>
+                                    <option>Mass Tort Claims Content Audit</option>
+                                    <option>Sitemap &amp; Webflow Architecture Audit</option>
+                                    <option>Lawsuit Update &amp; Epidemiology Audit</option>
+                                    <option>Competitor Landscape Audit</option>
+                                    <option>Author E-E-A-T &amp; Credibility Audit</option>
+                                    <option>Other / Not sure yet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Project Details</label>
+                            <textarea name="details" rows="4" class="w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800" placeholder="Product / drug, target indication, timeline, and any specific goals."></textarea>
+                        </div>
+                        <div class="flex items-center justify-between flex-wrap gap-3">
+                            <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-bold px-8 py-3 rounded-md transition-colors">Send Request</button>
+                            <span id="form-status" class="text-sm text-slate-500"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm mt-auto">
@@ -155,6 +240,29 @@
     <script>
         // --- Data Storage: Audit Details ---
         const audits = [
+            {
+                id: "whitepaper",
+                title: "Medical Whitepaper & Scientific Communications",
+                sop: "SOP-WB-030",
+                tier: "Premium Authorship Engagement",
+                time: "3–4 weeks / 3 articles",
+                price: "$9,000 (50% upfront)",
+                reviewer: "Thomas A. Hatzilabrou, MD — Lead Author",
+                purpose: "Physician-authored whitepaper series for pharmaceutical and medical-device sponsors. Engineered for product launch support (e.g., MediVant's Andrela), this engagement delivers a set of three peer-grade scientific communications that establish clinical narrative, mechanism-of-action positioning, and evidence framing — built to scale, with the option to expand scope and duplicate the format across additional products or indications.",
+                scope: [
+                    "Three (3) long-form whitepapers (2,500–4,000 words each) on the sponsor's product.",
+                    "Mechanism-of-action narrative, clinical evidence synthesis, and competitive positioning.",
+                    "Literature grounding via PubMed / clinical-trial registries with full citation libraries.",
+                    "Sponsor review cycles and a templated structure designed for rapid duplication across new indications."
+                ],
+                deliverables: [
+                    "3 publication-ready whitepapers (DOCX + formatted PDF) with named MD authorship.",
+                    "Annotated citation library (PubMed IDs / trial identifiers) per article.",
+                    "Executive one-page abstract for each whitepaper.",
+                    "Reusable content template + scope-expansion roadmap for additional drugs/indications.",
+                    "Engagement terms: 50% deposit to commence, balance on final delivery."
+                ]
+            },
             {
                 id: "integrity",
                 title: "Medical Article Integrity & SEO Audit",
@@ -474,10 +582,42 @@
             });
         }
 
+        // 4. Intake Form -> compose email to Worldborne
+        function initIntakeForm() {
+            const form = document.getElementById('intake-form');
+            if (!form) return;
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const f = e.target.elements;
+                const name = f['name'].value.trim();
+                const company = f['company'].value.trim();
+                const email = f['email'].value.trim();
+                const service = f['service'].value;
+                const details = f['details'].value.trim();
+
+                const subject = `Proposal Request: ${service} — ${company || name}`;
+                const body =
+                    `Name: ${name}\n` +
+                    `Company: ${company}\n` +
+                    `Email: ${email}\n` +
+                    `Service of Interest: ${service}\n\n` +
+                    `Project Details:\n${details}\n`;
+
+                const mailto = `mailto:doctor.thomas.hatzilabrou@gmail.com` +
+                    `?subject=${encodeURIComponent(subject)}` +
+                    `&body=${encodeURIComponent(body)}`;
+
+                document.getElementById('form-status').textContent =
+                    'Opening your email client…';
+                window.location.href = mailto;
+            });
+        }
+
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             renderNavigation();
             initChart();
+            initIntakeForm();
         });
     </script>
 </body>
