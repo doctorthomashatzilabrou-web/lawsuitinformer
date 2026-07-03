@@ -1,0 +1,10 @@
+# Scopes the wb-secretsauce Netlify site to the secretsauce/ folder only.
+# This file lives on the claude/secretsauce-map-dashboard branch and does not
+# affect any git-connected deploy of the main branch / existing worldborne site.
+[build]
+  publish = "secretsauce"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
