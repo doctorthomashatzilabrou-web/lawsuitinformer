@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Androgen Series — Worldborne Medical · Clinical Frontiers</title>
+<meta name="description" content="A three-part physician-authored whitepaper series on androgen therapy: delivery and pharmacokinetics, female androgen physiology, and testosterone therapy in women. Worldborne Medical.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="worldborne.css">
+<style>
+    .series-hero {
+        background: var(--navy-900);
+        color: #fff;
+        border-bottom: 4px solid var(--amber-500);
+        padding: 4.2rem 1.5rem 3.4rem;
+    }
+    .series-hero .inner { max-width: var(--wide); margin: 0 auto; }
+    .series-hero .eyebrow { color: var(--amber-400); margin-bottom: 1.3rem; }
+    .series-hero h1 {
+        font-family: var(--ff-display); font-weight: 900;
+        font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.06;
+        letter-spacing: -0.015em; color: #fff; margin: 0 0 1.2rem; max-width: 20ch;
+    }
+    .series-hero p.intro {
+        font-family: var(--ff-read); font-size: 1.28rem; line-height: 1.55;
+        color: var(--slate-200); max-width: 46rem; margin: 0; font-style: italic;
+    }
+    .series-hero .meta {
+        margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem;
+        font-family: var(--ff-ui); font-size: 0.72rem; font-weight: 600;
+        letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-400);
+    }
+    .series-hero .meta b { color: var(--amber-400); font-weight: 700; }
+
+    .toc { max-width: var(--wide); margin: 0 auto; padding: 3.2rem 1.5rem 1rem; }
+    .toc .lead-in {
+        font-family: var(--ff-read); font-size: 1.16rem; line-height: 1.7;
+        color: var(--slate-600); max-width: 46rem; margin: 0 0 2.6rem;
+    }
+    .toc-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+
+    a.article-card {
+        display: grid; grid-template-columns: 1fr; gap: 0;
+        text-decoration: none; background: #fff;
+        border: 1px solid var(--slate-200); border-radius: 14px; overflow: hidden;
+        transition: border-color .15s, transform .15s, box-shadow .15s;
+    }
+    a.article-card:hover { border-color: var(--amber-500); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(15,30,61,0.09); }
+    @media (min-width: 720px) { a.article-card { grid-template-columns: 168px 1fr; } }
+    .article-card .rail {
+        background: var(--navy-900); color: #fff;
+        padding: 1.6rem 1.4rem; display: flex; flex-direction: column; justify-content: center;
+        border-bottom: 1px solid var(--navy-800);
+    }
+    @media (min-width: 720px) { .article-card .rail { border-bottom: none; border-right: 1px solid var(--navy-800); } }
+    .article-card .rail .no {
+        font-family: var(--ff-ui); font-size: 0.62rem; font-weight: 700;
+        letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 0.4rem;
+    }
+    .article-card .rail .big {
+        font-family: var(--ff-display); font-weight: 900; font-size: 2.6rem; line-height: 1; color: var(--amber-400);
+    }
+    .article-card .rail .read {
+        margin-top: 0.9rem; font-family: var(--ff-ui); font-size: 0.68rem; font-weight: 600;
+        letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-300);
+    }
+    .article-card .body { padding: 1.7rem 1.7rem; }
+    .article-card .kick {
+        font-family: var(--ff-ui); font-size: 0.66rem; font-weight: 700;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-600); margin-bottom: 0.6rem;
+    }
+    .article-card h2 {
+        font-family: var(--ff-display); font-weight: 700; font-size: 1.5rem; line-height: 1.2;
+        color: var(--navy-950); margin: 0 0 0.7rem;
+    }
+    .article-card p {
+        font-family: var(--ff-read); font-size: 1.02rem; line-height: 1.55; color: var(--slate-600); margin: 0 0 0.9rem;
+    }
+    .article-card .go {
+        font-family: var(--ff-ui); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--navy-800);
+    }
+    .article-card:hover .go { color: var(--amber-600); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+    <div class="masthead-inner">
+        <a class="brand" href="index.html">WORLDBORNE <span>MEDICAL</span></a>
+        <span class="series-tag">Clinical Frontiers · Androgen Series</span>
+    </div>
+</header>
+
+<section class="series-hero">
+    <div class="inner">
+        <p class="eyebrow"><span class="date">June 12, 2026</span><span class="divider">·</span>Clinical Frontiers</p>
+        <h1>The Androgen Series</h1>
+        <p class="intro">A three-part, physician-authored examination of androgen therapy — from the physiology of the molecule to the delivery of the dose — written to separate what the evidence supports from what it does not.</p>
+        <div class="meta">
+            <span>Author: <b>Dr. Thomas Hatzilabrou, M.D.</b></span>
+            <span>3 whitepapers</span>
+            <span>99 references</span>
+            <span><b>Physician-led clinical content</b></span>
+        </div>
+    </div>
+</section>
+
+<main class="toc">
+    <p class="lead-in">The series moves from delivery to physiology to practice. The first article makes the pharmacokinetic case for the subcutaneous route in men; the second steps back to the physiology of androgens in women; the third turns that physiology into a disciplined, evidence-bounded approach to testosterone therapy. Together they model the standard Worldborne Medical brings to sponsor-facing scientific communications.</p>
+
+    <div class="toc-grid">
+        <a class="article-card" href="subcutaneous-needle.html">
+            <div class="rail">
+                <div class="no">Article</div>
+                <div class="big">01</div>
+                <div class="read">≈ 25 min · 27 refs</div>
+            </div>
+            <div class="body">
+                <div class="kick">Androgen Therapy · Delivery &amp; Pharmacokinetics</div>
+                <h2>The Quiet Case for the Subcutaneous Needle</h2>
+                <p>For eighty years the intramuscular injection was simply assumed. Comparable serum exposure, a steadier curve, and a far easier injection now make the subcutaneous route the better default for most self-managing patients.</p>
+                <span class="go">Read the article →</span>
+            </div>
+        </a>
+
+        <a class="article-card" href="androgen-physiology-women.html">
+            <div class="rail">
+                <div class="no">Article</div>
+                <div class="big">02</div>
+                <div class="read">≈ 21 min · 26 refs</div>
+            </div>
+            <div class="body">
+                <div class="kick">Female Endocrinology · Androgen Physiology</div>
+                <h2>Testosterone and Androgen Physiology in Women</h2>
+                <p>A normal, physiologically active female hormone — present above estradiol for much of adult life. Where androgens come from, how they are measured, what they do, and where the evidence is still being written.</p>
+                <span class="go">Read the article →</span>
+            </div>
+        </a>
+
+        <a class="article-card" href="testosterone-therapy-women.html">
+            <div class="rail">
+                <div class="no">Article</div>
+                <div class="big">03</div>
+                <div class="read">≈ 29 min · 46 refs</div>
+            </div>
+            <div class="body">
+                <div class="kick">Women’s Health · Androgen Replacement</div>
+                <h2>Testosterone Therapy in Women</h2>
+                <p>The evidence for distressing low desire is now solid. The harder, more useful conversation is everything around it — which women, which route, and how much — dosed to a level, never beyond the physiologic ceiling.</p>
+                <span class="go">Read the article →</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="disclaimer" style="max-width:var(--wide); margin:2.6rem auto 0;">
+        This content is educational and evidence-based. It is intended for healthcare professionals. It is not promotional labeling and does not constitute a claim of safety or efficacy for any specific compounded preparation. Compounded medications are not FDA-approved and are not reviewed by the FDA for safety, efficacy, or quality; individual patient responses vary. Treatment decisions rest with the prescribing clinician. Final regulatory, promotional, and medical review and approval rest with the sponsor. Author: Dr. Thomas Hatzilabrou, M.D.
+    </div>
+</main>
+
+<footer class="site-foot">
+    <div class="fbrand">Worldborne Medical</div>
+    <div class="ftag">Physician-Led Clinical Content</div>
+    <div class="fnote">&copy; 2026 Worldborne Medical, LLC · Clinical Frontiers · Androgen Series</div>
+</footer>
+
+</body>
+</html>
